@@ -142,18 +142,21 @@ export default function Sidebar() {
                   <DashboardIcon />
                 </ListItemIcon>
                 <ListItemText primary="DASHBOARD" />
-              </ListItemButton>
+              </ListItemButton> 
             </ListItem>
         </List>
         <Divider />
         <List>
-          {['All mail', 'Trash', 'Spam'].map((text, index) => (
+          {[{label:'Users',link:'/Admin/ManageUser'},{label:'Category',link:'/Admin/ManageCategory'}, {label:'Products',link:'/Admin/ManageProduct'}].map((text, index) => (
             <ListItem key={text} disablePadding>
               <ListItemButton>
+             
                 <ListItemIcon>
                   {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
                 </ListItemIcon>
-                <ListItemText primary={text} />
+                <Link to={text.link} style={{textDecoration:"none"}}>
+                <ListItemText primary={text.label} />
+                   </Link>
               </ListItemButton>
             </ListItem>
           ))}
@@ -161,7 +164,7 @@ export default function Sidebar() {
       </Drawer>
       <Main open={open}>
         <DrawerHeader />
-        <Typography sx={{ marginBottom: 2 }}>
+        {/* <Typography sx={{ marginBottom: 2 }}>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
           tempor incididunt ut labore et dolore magna aliqua. Rhoncus dolor purus non
           enim praesent elementum facilisis leo vel. Risus at ultrices mi tempus
@@ -187,7 +190,7 @@ export default function Sidebar() {
           tristique sollicitudin nibh sit. Ornare aenean euismod elementum nisi quis
           eleifend. Commodo viverra maecenas accumsan lacus vel facilisis. Nulla
           posuere sollicitudin aliquam ultrices sagittis orci a.
-        </Typography>
+        </Typography> */}
       </Main>
     </Box>
   );
