@@ -21,6 +21,7 @@ import MailIcon from '@mui/icons-material/Mail';
 
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import { Link } from 'react-router-dom';
+import ViewProduct from './ViewProduct';
 
 const drawerWidth = 240;
 
@@ -147,7 +148,7 @@ export default function Sidebar() {
         </List>
         <Divider />
         <List>
-          {[{label:'Users',link:'/Admin/ManageUser'},{label:'Category',link:'/Admin/ManageCategory'}, {label:'Products',link:'/Admin/ManageProduct'}].map((text, index) => (
+          {[{label:'Users',link:'/Admin/ManageUser'},{label:'Category',link:'/Admin/ManageCategory'}, {label:'Products',link:'/Admin/ManageProduct'}, {label:'View User', link:'/Admin/ViewUser'}, {label:'View Product', link:'/Admin/ViewProduct'}].map((text, index) => (
             <ListItem key={text} disablePadding>
               <ListItemButton>
              
