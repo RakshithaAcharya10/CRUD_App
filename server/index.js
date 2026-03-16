@@ -3,6 +3,7 @@ const dbconnection = require("./db");
 const cors = require("cors")
 const userroutes = require("./Routes/user_Routes")
 const productroutes = require("./Routes/product_Routes")
+const categoryroutes = require("./Routes/category_routes")
 // Express is the web framework, which handles request and response
 
 const app = express();
@@ -10,7 +11,6 @@ const app = express();
 
 const PORTNUMBER = 7000;
 //portnumber on which server listens to
-
 
 //app.listen is the method that statrs the server and listens to the incoming requests ono that specified port number
 //The callback function is executed when the server is successfully started
@@ -33,4 +33,5 @@ app.use(cors())
 app.use(express.json())
 app.use('/user', require("./Routes/user_Routes"))
 app.use('/product', require("./Routes/product_Routes"))
+app.use('/category', require("./Routes/category_routes"))
 // app.use('/user', userroutes)
