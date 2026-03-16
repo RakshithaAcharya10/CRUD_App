@@ -1,41 +1,41 @@
-import { Container, Paper, Typography, TextField, Button, Box } from "@mui/material";
-import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import React, { useState } from 'react'
+import Typography from '@mui/material/Typography';
+import Paper from '@mui/material/Paper';
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
+import axios from 'axios'
 
 export default function AddCategory() {
+  const [category, setcategory] = useState({
+    category_name:'',
+    category_description:''
+  })
+  const handlechange = (e)=>{
+    console.log({...category,[e.target.name]:e.target.value})
+    setcategory({...category,[e.target.name]:e.target.value})
+  }
+  const handleregister = ()=>{
 
-  const [name, setName] = useState("");
-  const navigate = useNavigate();
+    console.log("Form details :", category)
+    axios.post("http://localhost:7000/category/addcategory", category)
+    .then((res)=>{
+      console.log("registered category: ",res.data)
+      // alert("Register succefully")
+      alert(res.data.message)
 
-  const handleSave = () => {
-    console.log("New Category:", name);
-    navigate("/Admin/ManageCategory");
-  };
-
+    })
+    .catch((error)=>{
+      console.log(error)
+    })
+  }
   return (
-    <Container maxWidth="sm" sx={{ mt: 4 }}>
-      <Paper sx={{ p: 3 }}>
-        <Typography variant="h6" mb={2}>
-          Add Category
-        </Typography>
-
-        <Box display="flex" flexDirection="column" gap={2}>
-          <TextField
-            label="Category Name"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            fullWidth
-          />
-
-          <Button variant="contained" onClick={handleSave}>
-            Save
-          </Button>
-
-          <Button variant="outlined" onClick={() => navigate(-1)}>
-            Cancel
-          </Button>
-        </Box>
+    <div>
+      <Paper elevation={20} style={{width:"550PX",padding:"20PX",margin:"50px auto"}}>
+        <Typography variant='h4'>ADD CATEGORY PAGE</Typography>
+        <TextField variant='outlined' type='text' label='CNAME' name='category_name' fullWidth style={{marginBottom:"10px"}} onChange={handlechange}/>
+        <TextField variant='outlined' multiline rows={5} label='CDESCRIPTION' name='category_description' fullWidth style={{marginBottom:"10px"}} onChange={handlechange}/>
+        <Button variant='contained' fullWidth onClick={handleregister}>ADD PRODUCT</Button>
       </Paper>
-    </Container>
-  );
+    </div>
+  )
 }

@@ -14,6 +14,7 @@ export default function UserRoute() {
         <Route path='/UAbout' element={<UAbout/>}/>
         <Route path='/Register' element={<Register/>}/>
         <Route path='/' element={<AddProduct/>}/>
+        <Route path='/TopBar' element={<TopBar/>}/>
       </Routes>
     </div>
   )
