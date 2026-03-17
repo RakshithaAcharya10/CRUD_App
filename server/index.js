@@ -31,7 +31,9 @@ app.get('/apitest',(req, res)=>{
 
 app.use(cors())
 app.use(express.json())
-app.use('/user', require("./Routes/user_Routes"))
-app.use('/product', require("./Routes/product_Routes"))
-app.use('/category', require("./Routes/category_routes"))
-// app.use('/user', userroutes)
+// app.use('/user', require("./Routes/user_Routes"))
+app.use('/user', userroutes)
+// app.use('/product', require("./Routes/product_Routes"))
+app.use('/product', productroutes)
+// app.use('/category', require("./Routes/category_routes"))
+app.use('/category', categoryroutes)

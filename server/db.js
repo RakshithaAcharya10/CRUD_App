@@ -3,7 +3,6 @@ const CONNECTION_URL = 'mongodb://localhost:27017/mernbe'
 //   mongodb://localhost:27017/mernbe    = connection link
 // merbe = 'database name'
 
-
 const dbconnection = async ()=>{
     try {
         await mongoose.connect(CONNECTION_URL)
@@ -12,6 +11,5 @@ const dbconnection = async ()=>{
         console.log(error)
     }
 }
-
 
 module.exports = dbconnection;
