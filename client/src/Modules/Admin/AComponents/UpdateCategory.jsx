@@ -46,20 +46,20 @@ export default function UpdateCategory() {
   // }
 
 
-  // const handleUpdate = async ()={
-  //   const categorydata = new FormData()
-  //   categorydata.append('category_name',category.category_name)
-  //   categorydata.append('category_description',category.category_description)
+  const handleUpdate = async ()=>{
+    const categorydata = new FormData()
+    categorydata.append('category_name',category.category_name)
+    categorydata.append('category_description',category.category_description)
 
-  //   try {
-  //     await axios.put(`http://localhost:7000/category/Getcategorybyid/${rowid}`,category)
-  //     alert("Category Updated")
+    try {
+      await axios.put(`http://localhost:7000/category/updatecategory/${rowid}`,category)
+      alert("Category Updated")
 
-  //   } catch (error) {
-  //    console.log(error) 
-  //   }
+    } catch (error) {
+     console.log(error) 
+    }
 
-  // }
+  }
 
   return (
     <div>
@@ -67,7 +67,7 @@ export default function UpdateCategory() {
         <Typography variant='h4'>Update Category</Typography>
         <TextField variant='outlined' type='text' label='CNAME' name='category_name' fullWidth style={{marginBottom:"10px"}} onChange={handlechange} value={category.category_name}/>
         <TextField variant='outlined' multiline rows={5} label='CDESCRIPTION' name='category_description' fullWidth style={{marginBottom:"10px"}} onChange={handlechange} value={category.category_description}/>
-        <Button variant='contained' fullWidth >Update Category</Button>
+        <Button variant='contained' fullWidth  onClick={handleUpdate}>Update Category</Button>
       </Paper>
     </div>
   )

@@ -59,7 +59,7 @@ export default function ViewCategory() {
               <TableCell align='center'>{row.category_name}</TableCell>
               <TableCell align='center'>{row.category_description}</TableCell>
               <TableCell align='center'>
-                <Button variant='contained' component = {Link} to={`Admin/UpdateCategory/${row._id}`}>UPDATE</Button>
+                <Button variant='contained' component = {Link} to={`/Admin/UpdateCategory/${row._id}`}>UPDATE</Button>
                 <Button variant='outlined' onClick={() => handleDelete(row._id)}>DELETE</Button>
               </TableCell>
             </TableRow>
