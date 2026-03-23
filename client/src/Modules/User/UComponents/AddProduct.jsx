@@ -16,7 +16,8 @@ export default function AddProduct() {
     pprice:'',
     pquantity:'',
     pdescription:'',
-    categoryId:''
+    categoryId:'',
+    productimage:''
   })
 
   const [category, setcategory]= useState([])
@@ -34,7 +35,11 @@ useEffect(()=>{
 
   const handlechange = (e)=>{
     console.log({...product,[e.target.name]:e.target.value})
-    setproduct({...product,[e.target.name]:e.target.value})
+    if(e.target.name === 'productimage'){
+      setproduct({...product, productimage:e.target.files[0]})
+    }else{
+      setproduct({...product,[e.target.name]:e.target.value})
+    }
   }
   const handleregister = ()=>{
     // const existingusers =JSON.parse(localStorage.getItem('userdetails')) || [];
@@ -45,7 +50,8 @@ useEffect(()=>{
     // alert("Registration done!!!!!!!!!!!")
 
     console.log("Form details :", product)
-    axios.post("http://localhost:7000/product/registerproduct", product)
+    axios.post("http://localhost:7000/product/registerproduct", product,
+      {headers:{'Content-Type':'multipart/form-data'}})
     .then((res)=>{
       console.log("registered user: ",res.data)
       // alert("Register succefully")
@@ -60,11 +66,13 @@ useEffect(()=>{
     <div>
       <Paper elevation={20} style={{width:"550PX",padding:"20PX",margin:"50px auto"}}>
         <Typography variant='h4'>ADD PRODUCT</Typography>
-        <TextField variant='outlined' type='text' label='PNAME' name='pname' fullWidth style={{marginBottom:"10px"}} onChange={handlechange}/>
-        <TextField variant='outlined' type='number' label='PPRICE' name='pprice' fullWidth style={{marginBottom:"10px"}}  onChange={handlechange}/>
-        <TextField variant='outlined' type='number' label='PQUANTITY' name='pquantity' fullWidth style={{marginBottom:"10px"}} onChange={handlechange}/>
-        <TextField variant='outlined' multiline rows={5} label='PDESCRIPTION' name='pdescription' fullWidth style={{marginBottom:"10px"}} onChange={handlechange}/>
+        <TextField variant='outlined' type='text' label='PRODUCT NAME' name='pname' fullWidth style={{marginBottom:"10px"}} onChange={handlechange}/>
+        <TextField variant='outlined' type='number' label='PRODUCT PRICE' name='pprice' fullWidth style={{marginBottom:"10px"}}  onChange={handlechange}/>
+        <TextField variant='outlined' type='number' label='PRODUCT QUANTITY' name='pquantity' fullWidth style={{marginBottom:"10px"}} onChange={handlechange}/>
+        <TextField variant='outlined' type='file' InputLabelProps={{shrink:true}} label='PRODUCT IMAGE' name='productimage' fullWidth style={{marginBottom:"10px"}} onChange={handlechange}/>
+        <TextField variant='outlined' multiline rows={5} label='PRODUCT DESCRIPTION' name='pdescription' fullWidth style={{marginBottom:"10px"}} onChange={handlechange}/>
         
+
         <FormControl fullWidth>
         <Select
         name="categoryId"
