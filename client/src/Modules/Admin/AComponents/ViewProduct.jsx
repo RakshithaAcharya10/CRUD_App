@@ -9,6 +9,8 @@ import Rating from '@mui/material/Rating';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import axios from 'axios';
+import {Link} from 'react-router-dom' ;
+import { Button } from '@mui/material';
 
 export default function ViewProduct() {
     const [products, setProduct] = useState([])
@@ -24,6 +26,19 @@ export default function ViewProduct() {
         })
         
     },[])
+
+
+    const handleDelete = (uid) => {
+        axios.delete(`http://localhost:7000/product/deleteproduct/${uid}`)
+    
+          .then((res) => {
+            alert("Product deleted")
+          })
+          .catch((error) => {
+            console.log(error)
+          })
+      }
+
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
@@ -35,6 +50,7 @@ export default function ViewProduct() {
             <TableCell align="right">QUANTITY</TableCell>
             <TableCell align="right">DESCRIPTION</TableCell>
             <TableCell align="right">PRODUCT IMAGE</TableCell>
+            <TableCell align='center'>ACTION</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -50,7 +66,14 @@ export default function ViewProduct() {
               <TableCell align="right">{row.pprice}</TableCell>
               <TableCell align="right">{row.pquantity}</TableCell>
               <TableCell align="right">{row.pdescription}</TableCell>
-              <TableCell align="right">{row.productimage}</TableCell>
+              <TableCell align="right">
+              <img src={`http://localhost:7000/image/${row.productimage}`} alt=""  style={{width:"200px", height:"200px"}} />
+              </TableCell>
+              <TableCell align='center'>
+                <Button variant='contained' component = {Link} to={`/Admin/UpdateProduct/${row._id}`}>UPDATE</Button>
+                <Button variant='outlined' onClick={() => handleDelete(row._id)}>DELETE</Button>
+              </TableCell>
+
             </TableRow>
           ))}
         </TableBody>

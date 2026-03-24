@@ -14,7 +14,7 @@ import MenuItem from '@mui/material/MenuItem';
 // import AdbIcon from '@mui/icons-material/Adb';
 import StoreIcon from '@mui/icons-material/Store';
 
-const pages = ['Products', 'Pricing', 'Blog'];
+const pages = ['Products', 'Pricing', 'Blog',];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 function TopBar() {
