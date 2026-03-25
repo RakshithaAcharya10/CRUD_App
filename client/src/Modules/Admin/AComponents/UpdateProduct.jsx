@@ -6,6 +6,10 @@ import Button from '@mui/material/Button';
 import axios from 'axios'
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
+
 
 export default function UpdateProduct() {
   const [product, setproduct] = useState({
@@ -20,8 +24,14 @@ export default function UpdateProduct() {
   const{rowid} = useParams();
   const handlechange = (e)=>{
     console.log({...product,[e.target.name]:e.target.value})
-    setproduct({...product,[e.target.name]:e.target.value})
+    // setproduct({...product,[e.target.name]:e.target.value})
+    if (e.target.name === 'productimage') {
+      setproduct({ ...product, productimage: e.target.files[0] })
+    } else {
+      setproduct({ ...product, [e.target.name]: e.target.value })
+    }
   }
+
 
   useEffect(()=>{
     axios.get(`http://localhost:7000/product/getproductbyid/${rowid}`)
@@ -32,8 +42,20 @@ export default function UpdateProduct() {
     .catch((error)=>{
       console.log(error)
     })
-  },[])
+  },[rowid])
 
+const [category, setCategory] = useState([])
+  useEffect(() => {
+    axios.get('http://localhost:7000/category/getcategory')
+      .then((res) => {
+        console.log(res.data.allcategory)
+        setCategory(res.data.allcategory)
+      })
+      .catch((error) => {
+        console.log(error)
+
+      })
+  }, [])
 
 
   const handleUpdate = async ()=>{
@@ -46,12 +68,28 @@ export default function UpdateProduct() {
     productdata.append('productimage',product.productimage)
     
 
-    try {
-      await axios.put(`http://localhost:7000/product/updateproduct/${rowid}`,product)
-      alert("Product Updated")
+    // try {
+    //   await axios.put(`http://localhost:7000/product/updateproduct/${rowid}`,product)
+    //   alert("Product Updated")
 
+    // } catch (error) {
+    //  console.log(error) 
+    // }
+
+
+    try {
+      await axios.put(
+        `http://localhost:7000/product/updateproduct/${rowid}`,
+        productdata,
+        {
+          headers: {
+            'Content-Type': 'multipart/form-data'
+          }
+        }
+      )
+      alert("product updated")
     } catch (error) {
-     console.log(error) 
+      console.log(error)
     }
 
   }
@@ -64,7 +102,28 @@ export default function UpdateProduct() {
         <TextField variant='outlined' type='number' label='PRODUCT PRICE' name='pprice' fullWidth style={{marginBottom:"10px"}} onChange={handlechange} value={product.pprice}/>
         <TextField variant='outlined' type='number' label='PRODUCT QUANTITY' name='pquantity' fullWidth style={{marginBottom:"10px"}} onChange={handlechange} value={product.pquantity}/>
         <TextField variant='outlined' multiline rows={5} label='PRODUCT DESCRIPTION' name='pdescription' fullWidth style={{marginBottom:"10px"}} onChange={handlechange} value={product.pdescription}/>
-        {/* <TextField variant='outlined' type='file' InputLabelProps={{shrink:true}} label='PRODUCT IMAGE' name='productimage' fullWidth style={{marginBottom:"10px"}} onChange={handlechange} value={product.pdescription}/> */}
+        <TextField variant='outlined' type='file' InputLabelProps={{shrink:true}} label='PRODUCT IMAGE' name='productimage' fullWidth style={{marginBottom:"10px"}} onChange={handlechange}/>
+        
+        <FormControl fullWidth>
+        <Select
+        name="categoryId"
+          labelId="demo-simple-select-label"
+          id="demo-simple-select"
+          value={product.categoryId}
+          label="Age"
+          onChange={handlechange}
+        >
+
+          <MenuItem>Select Category</MenuItem>
+          {category.map((cat)=>{
+            return(
+              <MenuItem value={cat._id}>{cat.category_name}</MenuItem>
+            )
+          })}
+
+        </Select>
+      </FormControl>
+
         <Button variant='contained' fullWidth  onClick={handleUpdate}>Update Product</Button>
       </Paper>
     </div>

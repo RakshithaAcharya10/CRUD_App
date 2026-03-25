@@ -59,7 +59,8 @@ const updateproduct = async(req, res)=>{
     try {
         // const uid = req.params.id
         const {id} = req.params
-        const body = req.body
+        // const body = req.body
+        const body = req.file ? { ...req.body, productimage: req.file.filename } : req.body
         const updateproduct = await producttable.findByIdAndUpdate(id, body,{new:true})
         console.log(updateproduct)
         res.status(201).json({message:"Product updated",updatedata:updateproduct})

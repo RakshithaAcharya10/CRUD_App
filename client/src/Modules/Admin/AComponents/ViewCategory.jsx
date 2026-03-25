@@ -42,7 +42,7 @@ export default function ViewCategory() {
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
-          <TableRow>
+          <TableRow sx={{ '& th': { color: 'red', fontWeight: 'bold' } }}>
             <TableCell align='center'>SL.NO</TableCell>
             <TableCell align='center'>CATEGOY NAME</TableCell>
             <TableCell align='center'>CATEGORY DESCRIPTION</TableCell>

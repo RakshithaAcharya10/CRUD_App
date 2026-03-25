@@ -11,6 +11,7 @@ import { useEffect } from 'react';
 import axios from 'axios';
 import {Link} from 'react-router-dom' ;
 import { Button } from '@mui/material';
+import { red } from '@mui/material/colors';
 
 export default function ViewProduct() {
     const [products, setProduct] = useState([])
@@ -43,13 +44,14 @@ export default function ViewProduct() {
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
-          <TableRow>
-            <TableCell>Serial NO.</TableCell>
-            <TableCell align="right">NAME</TableCell>
-            <TableCell align="right">PRICE</TableCell>
-            <TableCell align="right">QUANTITY</TableCell>
-            <TableCell align="right">DESCRIPTION</TableCell>
-            <TableCell align="right">PRODUCT IMAGE</TableCell>
+          <TableRow sx={{ '& th': { color: 'red', fontWeight: 'bold' } }}>
+          {/* <TableRow sx={{color:"red"}}> */}
+            <TableCell align="center">SI. NO.</TableCell>
+            <TableCell align="center">NAME</TableCell>
+            <TableCell align="center">PRICE</TableCell>
+            <TableCell align="center">QUANTITY</TableCell>
+            <TableCell align="center">DESCRIPTION</TableCell>
+            <TableCell align="center">PRODUCT IMAGE</TableCell>
             <TableCell align='center'>ACTION</TableCell>
           </TableRow>
         </TableHead>
@@ -62,12 +64,12 @@ export default function ViewProduct() {
               <TableCell component="th" scope="row" align='center'>
                 {index+1}
               </TableCell>
-              <TableCell align="right">{row.pname}</TableCell>
-              <TableCell align="right">{row.pprice}</TableCell>
-              <TableCell align="right">{row.pquantity}</TableCell>
-              <TableCell align="right">{row.pdescription}</TableCell>
-              <TableCell align="right">
-              <img src={`http://localhost:7000/image/${row.productimage}`} alt=""  style={{width:"200px", height:"200px"}} />
+              <TableCell align="center">{row.pname}</TableCell>
+              <TableCell align="center">{row.pprice}</TableCell>
+              <TableCell align="center">{row.pquantity}</TableCell>
+              <TableCell align="center">{row.pdescription}</TableCell>
+              <TableCell align="center">
+              <img src={`http://localhost:7000/image/${row.productimage}`} alt=""  style={{width:"150px", height:"150px"}} />
               </TableCell>
               <TableCell align='center'>
                 <Button variant='contained' component = {Link} to={`/Admin/UpdateProduct/${row._id}`}>UPDATE</Button>

@@ -40,13 +40,13 @@ export default function ViewUser() {
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
-          <TableRow>
-            <TableCell>Serial NO.</TableCell>
-            <TableCell align="right">NAME</TableCell>
-            <TableCell align="right">EMAIL</TableCell>
-            <TableCell align="right">PHONE</TableCell>
-            <TableCell align="right">ADRESS</TableCell>
-            <TableCell align="right">ACTION</TableCell>
+          <TableRow sx={{ '& th': { color: 'red', fontWeight: 'bold' } }}>
+            <TableCell align="left">Serial NO.</TableCell>
+            <TableCell align="left">NAME</TableCell>
+            <TableCell align="left">EMAIL</TableCell>
+            <TableCell align="left">PHONE</TableCell>
+            <TableCell align="left">ADRESS</TableCell>
+            <TableCell align="left">ACTION</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -55,15 +55,15 @@ export default function ViewUser() {
               key={row._id}
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
             >
-              <TableCell component="th" scope="row" align='center'>
+              <TableCell component="th" scope="row" align='left'>
                 {index+1}
               </TableCell>
-              <TableCell align="right">{row.name}</TableCell>
-              <TableCell align="right">{row.email}</TableCell>
-              <TableCell align="right">{row.phone}</TableCell>
-              <TableCell align="right">{row.address}</TableCell>
-              <TableCell align="right">
-                <Button variant='outlined'>UPDATE</Button>
+              <TableCell align="left">{row.name}</TableCell>
+              <TableCell align="left">{row.email}</TableCell>
+              <TableCell align="left">{row.phone}</TableCell>
+              <TableCell align="left">{row.address}</TableCell>
+              <TableCell align="left">
+                <Button variant='contained'>UPDATE</Button>
                 <Button variant='outlined' onClick={()=>HandleDelete(row._id)}>DELETE</Button>
               </TableCell>
             </TableRow>
