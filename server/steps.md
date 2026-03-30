@@ -21,3 +21,8 @@ here server runs whenever there is changes in the files
 
 multer - npm install multer
 It is a middleware for handling file/image uploads.
+
+
+jwt json web token
+npm i jsonwebtoken
+It is used for secure authentication and authorization
