@@ -8,6 +8,7 @@ import AddProduct from '../UComponents/AddProduct'
 import Products from '../UComponents/Products'
 import ProductDetails from '../UComponents/ProductDetails'
 import Login from '../UComponents/Login'
+import Myprofile from '../UComponents/Myprofile'
 
 
 function AppContent() {
@@ -24,6 +25,7 @@ function AppContent() {
         <Route path='/AddProduct' element={<AddProduct />} />
         <Route path='/Products' element={<Products />} />
         <Route path='/Product/:id' element={<ProductDetails />} />
+        <Route path='/Myprofile' element={<Myprofile />} />
       </Routes>
 
     </div>
