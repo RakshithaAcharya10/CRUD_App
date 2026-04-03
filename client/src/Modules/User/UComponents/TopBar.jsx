@@ -13,13 +13,29 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 // import AdbIcon from '@mui/icons-material/Adb';
 import StoreIcon from '@mui/icons-material/Store';
+import { useLocation, useNavigate } from 'react-router-dom';
 
-const pages = ['Products', 'Pricing', 'Blog',];
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+const pages = [
+  { name: "About Us", path: "/UAbout" },
+  { name: "Products", path: "/Products" },
+  { name: "FAQ", path:"/Admin/FAQ"}
+];
+const settings = ['Profile', 'Logout'];
 
 function TopBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+
+  const navigate = useNavigate();
+
+
+
+const location = useLocation();  
+if (location.pathname === "/Login" || location.pathname === "/") {
+  return null;
+}
+
+  
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -35,6 +51,16 @@ function TopBar() {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
+  const HandleNavigate = (path) => navigate(path)
+  const handlesettings = (set) => {
+    if (set === 'Logout') {
+      alert("Are you sure want to logout???")
+      localStorage.removeItem('UserToken')
+      navigate("/Login")
+    } else if (set === 'Profile') {
+      navigate('/Myprofile')
+    }
+  }
 
   return (
     // <AppBar position="static">
@@ -58,7 +84,7 @@ function TopBar() {
               textDecoration: 'none',
             }}
           >
-            LOGO
+            OUR-STORE
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
@@ -89,8 +115,8 @@ function TopBar() {
               sx={{ display: { xs: 'block', md: 'none' } }}
             >
               {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography sx={{ textAlign: 'center' }}>{page}</Typography>
+                <MenuItem key={page.name} onClick={() => HandleNavigate(page.path)}>
+                  <Typography sx={{ textAlign: 'center' }}>{page.name}</Typography>
                 </MenuItem>
               ))}
             </Menu>
@@ -113,16 +139,16 @@ function TopBar() {
               textDecoration: 'none',
             }}
           >
-            LOGO
+            Our Store
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
               <Button
-                key={page}
-                onClick={handleCloseNavMenu}
+                key={page.name}
+                onClick={() => HandleNavigate(page.path)}
                 sx={{ my: 2, color: 'white', display: 'block' }}
               >
-                {page}
+                {page.name}
               </Button>
             ))}
           </Box>
@@ -149,7 +175,7 @@ function TopBar() {
               onClose={handleCloseUserMenu}
             >
               {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
+                <MenuItem key={setting} onClick={() => handlesettings(setting)}>
                   <Typography sx={{ textAlign: 'center' }}>{setting}</Typography>
                 </MenuItem>
               ))}

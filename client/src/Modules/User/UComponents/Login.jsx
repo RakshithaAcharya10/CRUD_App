@@ -4,6 +4,7 @@ import Paper from '@mui/material/Paper';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import axios from 'axios'
+import { useNavigate } from 'react-router-dom';
 
 export default function Login() {
   const [login, setLogin] = useState({
@@ -15,6 +16,7 @@ export default function Login() {
     setLogin({...login,[e.target.name]:e.target.value})
   }
  
+  const Navigate = useNavigate();
 
   const handleLogin=()=>{
     console.log("Login data:",login)
@@ -24,6 +26,7 @@ export default function Login() {
       if(res.data.success){
         localStorage.setItem("UserToken", res.data.token)
       alert("Login successfully!!!!")
+      Navigate("/UAbout")
       }
       else{
         alert("Login Unsuccessfull!!")
@@ -38,7 +41,7 @@ export default function Login() {
   return (
     <div>
       <Paper elevation={20} style={{width:"550PX",padding:"20PX",margin:"50px auto"}}>
-        <Typography variant='h4'>REGISTER PAGE</Typography>
+        <Typography variant='h4'>LOGIN PAGE</Typography>
         {/* <TextField variant='outlined' type='text' label='NAME' name='name' fullWidth style={{marginBottom:"10px"}} onChange={handlechange}/> */}
         <TextField variant='outlined' type='email' label='EMAIL' name='email' fullWidth style={{marginBottom:"10px"}}  onChange={handlechange}/>
         <TextField variant='outlined' type='password' label='PASSWORD' name='password' fullWidth style={{marginBottom:"10px"}} onChange={handlechange}/>

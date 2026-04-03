@@ -43,6 +43,8 @@ export default function Myprofile() {
     useEffect(() => {
         viewprofile()
     }, [])
+
+
     const viewprofile = async (req, res) => {
         try {
             const response = await fetch("http://localhost:7000/user/getProfile", { method: "GET", headers: { "auth-token": token } })
@@ -55,25 +57,42 @@ export default function Myprofile() {
             console.log(error)
         }
     }
-const handleUpdate = async () => {
-    try {
-        const response = await axios.put(
-            "http://localhost:7000/user/updateuser/" + formdata._id,
-            formdata,
-            {
-                headers: {
-                    "auth-token": token
-                }
-            }
-        )
-        console.log("Updated data:", response.data)
-        alert("Profile updated successfully")
 
-    } catch (error) {
-        console.log(error)
-        alert("Update failed")
+
+    // const handleUpdate = async () => {
+    //     try {
+    //         const response = await axios.put(
+    //              `http://localhost:7000/user/updateuser/${formdata._id}`,
+    //             formdata,
+    //             {
+    //                 headers: {
+    //                     "auth-token": token
+    //                 }
+    //             }
+    //         )
+    //         console.log("Updated data:", response.data)
+    //         alert("Profile updated successfully")
+
+    //     } catch (error) {
+    //         console.log(error)
+    //         alert("Update failed")
+    //     }
+    // }
+
+    const handleprofile = async (req, res) => {
+        try {
+            const response = await fetch("http://localhost:7000/user/updateprofile", { method: "PUT",body:JSON.stringify(formdata), headers: {"Content-Type":"application/json", "auth-token": token } })
+
+            // axios.get("http://localhost:7000/user/getProfile",{headers:{"auth-token":token}})
+            const details = await response.json()
+            alert("profile updated")
+            setFormdata(details.udetails)
+        } catch (error) {
+            console.log(error)
+            res.status(500).json({message:"server error"})
+        }
     }
-}
+
 
     return (
         <div>
@@ -83,7 +102,7 @@ const handleUpdate = async () => {
                 <TextField variant='outlined' type='email' label='EMAIL' name='email' fullWidth style={{ marginBottom: "10px" }} onChange={handlechange} value={formdata.email} />
                 <TextField variant='outlined' type='number' label='PHONE' name='phone' fullWidth style={{ marginBottom: "10px" }} onChange={handlechange} value={formdata.phone} />
                 <TextField variant='outlined' multiline rows={5} label='ADDRESS' name='address' fullWidth style={{ marginBottom: "10px" }} onChange={handlechange} value={formdata.address} />
-                <Button variant='contained' fullWidth onClick={handleUpdate} >UPDATE</Button>
+                <Button variant='contained' fullWidth onClick={handleprofile} >UPDATE</Button>
             </Paper>
         </div>
     )

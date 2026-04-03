@@ -9,6 +9,7 @@ import Products from '../UComponents/Products'
 import ProductDetails from '../UComponents/ProductDetails'
 import Login from '../UComponents/Login'
 import Myprofile from '../UComponents/Myprofile'
+import Order from '../UComponents/Order'
 
 
 function AppContent() {
@@ -18,14 +19,15 @@ function AppContent() {
     <div>
       {!hidetopbar.includes(location.pathname) && <TopBar />}
       <Routes>
-        <Route path='/' element={<UHome />} />
+        <Route path='/UHome' element={<UHome />} />
         <Route path='/UAbout' element={<UAbout />} />
-        <Route path='/Register' element={<Register />} />
+        <Route path='/' element={<Register />} />
         <Route path='/Login' element={<Login />} />
         <Route path='/AddProduct' element={<AddProduct />} />
         <Route path='/Products' element={<Products />} />
         <Route path='/Product/:id' element={<ProductDetails />} />
         <Route path='/Myprofile' element={<Myprofile />} />
+        <Route path='/Order' element={<Order />} />
       </Routes>
 
     </div>

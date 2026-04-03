@@ -2,6 +2,7 @@ const express = require("express");
 const dbconnection = require("./db");
 const cors = require("cors")
 const userroutes = require("./Routes/user_Routes")
+const adminroutes = require("./Routes/admin_Routes")
 const productroutes = require("./Routes/product_Routes")
 const categoryroutes = require("./Routes/category_routes")
 // Express is the web framework, which handles request and response
@@ -33,6 +34,7 @@ app.use(cors())
 app.use(express.json())
 // app.use('/user', require("./Routes/user_Routes"))
 app.use('/user', userroutes)
+app.use('/admin', adminroutes)
 // app.use('/product', require("./Routes/product_Routes"))
 app.use('/product', productroutes)
 // app.use('/category', require("./Routes/category_routes"))

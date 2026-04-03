@@ -39,7 +39,7 @@ export default function Register() {
   }
   return (
     <div>
-      <Paper elevation={20} style={{width:"550PX",padding:"20PX",margin:"50px auto"}}>
+      <Paper elevation={20} style={{width:"550PX",padding:"40PX",margin:"50px auto"}}>
         <Typography variant='h4'>REGISTER PAGE</Typography>
         <TextField variant='outlined' type='text' label='NAME' name='name' fullWidth style={{marginBottom:"10px"}} onChange={handlechange}/>
         <TextField variant='outlined' type='email' label='EMAIL' name='email' fullWidth style={{marginBottom:"10px"}}  onChange={handlechange}/>
@@ -47,6 +47,7 @@ export default function Register() {
         <TextField variant='outlined' type='number' label='PHONE' name='phone' fullWidth style={{marginBottom:"10px"}} onChange={handlechange}/>
         <TextField variant='outlined' multiline rows={5} label='ADDRESS' name='address' fullWidth style={{marginBottom:"10px"}} onChange={handlechange}/>
         <Button variant='contained' fullWidth onClick={handleregister}>REGISTER</Button>
+       <a style={{borderTopWidth:"10px",marginLeft:"190px", marginTop:"10px"}} href='/Login'>Already Registered?Login</a>
       </Paper>
     </div>
   )

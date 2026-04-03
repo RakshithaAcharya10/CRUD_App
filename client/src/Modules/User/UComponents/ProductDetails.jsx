@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { Paper, Typography } from "@mui/material";
@@ -6,6 +6,8 @@ import { Paper, Typography } from "@mui/material";
 export default function ProductDetails() {
   const { id } = useParams();   
   const [product, setProduct] = useState(null);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     axios.get(`http://localhost:7000/product/getproductbyid/${id}`)
@@ -100,7 +102,8 @@ return (
           border: "none",
           borderRadius: "5px",
           cursor: "pointer"
-        }}>
+        }}
+        onClick={() => navigate("/Order")}>
           Buy Now
         </button>
       </div>

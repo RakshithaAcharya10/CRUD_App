@@ -55,7 +55,7 @@ export default function UAbout() {
         {/* Features */}
         <Grid container spacing={4} sx={{ mt: 3 }}>
 
-          <Grid item xs={12} md={4}>
+          <Grid>
             <Paper sx={{ p: 4, textAlign: "center", height: "100%" }}>
               <Typography variant="h6">Wide Range</Typography>
               <Typography variant="body2">
@@ -64,7 +64,7 @@ export default function UAbout() {
             </Paper>
           </Grid>
 
-          <Grid item xs={12} md={4}>
+          <Grid>
             <Paper sx={{ p: 4, textAlign: "center", height: "100%" }}>
               <Typography variant="h6">Best Prices</Typography>
               <Typography variant="body2">
@@ -73,7 +73,7 @@ export default function UAbout() {
             </Paper>
           </Grid>
 
-          <Grid item xs={12} md={4}>
+          <Grid>
             <Paper sx={{ p: 4, textAlign: "center", height: "100%" }}>
               <Typography variant="h6">Fast Delivery</Typography>
               <Typography variant="body2">

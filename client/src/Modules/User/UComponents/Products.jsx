@@ -54,10 +54,10 @@ export default function Products() {
       : products.filter((pro) => pro.categoryId === selectedcategory);
 
   return (
-    <div>
+    <div style={{ marginTop: "30px", padding: "10px" }}>
 
-      <FormControl fullWidth sx={{ marginBottom: "20px" }}>
-        <InputLabel>Category</InputLabel>
+      <FormControl fullWidth sx={{ mb: "20px" }}>
+        <InputLabel style={{fontSize:'25px'}}>Category</InputLabel>
         <Select
           label="Category"
           value={selectedcategory}
