@@ -129,9 +129,9 @@ export default function Products() {
               <IconButton onClick={(e) => e.stopPropagation()}>
                 <FavoriteIcon />
               </IconButton>
-              <IconButton onClick={(e) => e.stopPropagation()}>
+              {/* <IconButton onClick={(e) => e.stopPropagation()}>
                 <ShareIcon />
-              </IconButton>
+              </IconButton> */}
             </CardActions>
 
           </Card>

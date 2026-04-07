@@ -18,24 +18,19 @@ import { useLocation, useNavigate } from 'react-router-dom';
 const pages = [
   { name: "About Us", path: "/UAbout" },
   { name: "Products", path: "/Products" },
-  { name: "FAQ", path:"/Admin/FAQ"}
+  { name: "FAQ", path:"/FAQ"}
 ];
-const settings = ['Profile', 'Logout'];
+// const settings = ['Profile', 'Logout'];
+const token = localStorage.getItem("UserToken")
+console.log(token)
+
+const settings = token ? ['Profile', 'Logout'] : ['Login']
 
 function TopBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
   const navigate = useNavigate();
-
-
-
-const location = useLocation();  
-if (location.pathname === "/Login" || location.pathname === "/") {
-  return null;
-}
-
-  
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);

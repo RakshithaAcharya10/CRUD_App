@@ -11,8 +11,7 @@ import ViewProduct from '../AComponents/ViewProduct'
 import ViewCategory from '../AComponents/ViewCategory'
 import UpdateCategory from '../AComponents/UpdateCategory'
 import UpdateProduct from '../AComponents/UpdateProduct'
-import ALogin from '../AComponents/Alogin'
-import FAQ from '../AComponents/FAQ'
+import ALogin from '../AComponents/ALogin'
 export default function AdminRoute() {
   return (
     <div>
@@ -20,7 +19,6 @@ export default function AdminRoute() {
       <Routes>
         <Route path='/AHome' element={<AHome/>}/>
         <Route path='/ALogin' element={<ALogin/>}/>
-        <Route path='/FAQ' element={<FAQ/>}/>
         <Route path='/ManageUser' element={<ManageUser/>}/>
         <Route path='/ManageCategory' element={<ManageCategory/>}/>
         <Route path='/ManageProduct' element={<ManageProduct/>}/>

@@ -65,7 +65,10 @@ const [category, setCategory] = useState([])
     productdata.append('pquantity',product.pquantity)
     productdata.append('pdescription',product.pdescription)
     productdata.append('categoryId',product.categoryId)
-    productdata.append('productimage',product.productimage)
+
+    if(product.productimage){
+      productdata.append("productimage", product.productimage)
+    }
     
 
     // try {
@@ -104,6 +107,9 @@ const [category, setCategory] = useState([])
         <TextField variant='outlined' multiline rows={5} label='PRODUCT DESCRIPTION' name='pdescription' fullWidth style={{marginBottom:"10px"}} onChange={handlechange} value={product.pdescription}/>
         <TextField variant='outlined' type='file' InputLabelProps={{shrink:true}} label='PRODUCT IMAGE' name='productimage' fullWidth style={{marginBottom:"10px"}} onChange={handlechange}/>
         
+        <img src={`http://localhost:7000/image/${product.productimage}`}/>
+
+
         <FormControl fullWidth>
         <Select
         name="categoryId"

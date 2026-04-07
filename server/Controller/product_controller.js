@@ -58,12 +58,24 @@ const deleteproduct = async(req, res)=>{
 const updateproduct = async(req, res)=>{
     try {
         // const uid = req.params.id
-        const {id} = req.params
+        // const {id} = req.params
         // const body = req.body
-        const body = req.file ? { ...req.body, productimage: req.file.filename } : req.body
-        const updateproduct = await producttable.findByIdAndUpdate(id, body,{new:true})
-        console.log(updateproduct)
-        res.status(201).json({message:"Product updated",updatedata:updateproduct})
+        // const body = req.file ? { ...req.body, productimage: req.file.filename } : req.body
+        // const pimage = req.file ? req.file.filename:null
+        const{pname, pprice, pquantity, pdescription, categoryId} = req.body;
+        const pimage = req.file ? req.file.filename:null
+
+        const productdetails ={
+            pname,
+            pprice,
+            pquantity,
+            pdescription,
+            categoryId,
+            productimage:pimage
+        };
+        const updateproduct = await producttable.findByIdAndUpdate(req.params.id, productdetails,{new:true});
+        // console.log(updateproduct)
+        res.status(200).json({success: true, message:"Product updated",updatedata:updateproduct})
     } catch (error) {
         console.log(error)
         res.status(500).json({message:"Server error",error})

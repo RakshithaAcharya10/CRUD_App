@@ -30,9 +30,9 @@ export default function FAQ() {
   ])
 
   return (
-    <div style={{ padding: "40px 60px", minHeight: "100vh" }}>
+    <div style={{ padding: "80px 250px", minHeight: "100vh" }}>
       
-      <Typography variant="h5" style={{ marginBottom: "16px", fontWeight:"bold", color:"red"}}>
+      <Typography variant="h4" style={{ marginBottom: "40px", fontWeight:"bold", color:"#af2509", textAlign:"center"}}>
         Frequently Asked Questions
       </Typography>
 
