@@ -1,21 +1,21 @@
 const jwt = require("jsonwebtoken")
-const SECRET_KEY ="product-crud"
+const SECRET_KEY = "product-crud"
 
-const authuser = async(req, res, next)=>{
+const authuser = async (req, res, next) => {
     try {
         const usertoken = await req.header("auth-token")
-        if(usertoken){
+        if (usertoken) {
             const userinfo = await jwt.verify(usertoken, SECRET_KEY)
-            console.log(userinfo)
-            req.userid = userinfo;
+            console.log("userinfo", userinfo)
+            req.userid = userinfo.id;
             next();
         }
-        else{
-            res.json({success: false, message: "unathorized! user token"})
+        else {
+            res.json({ success: false, message: "unathorized! user token" })
         }
     } catch (error) {
         console.log(error);
-        res.json({success:false, message:"Server error"})
+        res.json({ success: false, message: "Server error" })
     }
 }
 

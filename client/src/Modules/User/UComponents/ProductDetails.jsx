@@ -103,7 +103,7 @@ return (
           borderRadius: "5px",
           cursor: "pointer"
         }}
-        onClick={() => navigate("/Order")}>
+        onClick={()=>navigate(`/Bookingform/${product._id}`)}>
           Buy Now
         </button>
       </div>

@@ -14,18 +14,18 @@ import ShareIcon from '@mui/icons-material/Share';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import { FormControl, InputLabel, MenuItem, Select } from '@mui/material';
-import { useNavigate } from "react-router-dom";
+import { Button, FormControl, InputLabel, MenuItem, Select } from '@mui/material';
+import { useNavigate, useParams } from "react-router-dom";
 
 export default function Products() {
-
+  
   const navigate = useNavigate();
 
   const [products, setProduct] = useState([]);
   const [categories, setCategories] = useState([]);
   const [selectedcategory, setSelectedcategory] = useState("All");
 
-  // 🔹 Fetch Products
+  //Fetch Products
   useEffect(() => {
     axios.get('http://localhost:7000/product/getproduct')
       .then((res) => {
@@ -36,7 +36,7 @@ export default function Products() {
       });
   }, []);
 
-  // 🔹 Fetch Categories
+  //Fetch Categories
   useEffect(() => {
     axios.get('http://localhost:7000/category/getcategory')
       .then((res) => {
@@ -90,7 +90,7 @@ export default function Products() {
               flexDirection: "column",
               cursor: "pointer"
             }}
-            onClick={() => navigate(`/product/${pdata._id}`)}
+            // onClick={() => navigate(`/product/${pdata._id}`)}
           >
 
             <CardHeader
@@ -117,6 +117,7 @@ export default function Products() {
                 width: "100%",
                 objectFit: "contain"
               }}
+              onClick={() => navigate(`/product/${pdata._id}`)}
             />
 
             <CardContent>
@@ -125,14 +126,19 @@ export default function Products() {
               </Typography>
             </CardContent>
 
-            <CardActions disableSpacing>
+            {/* <CardActions disableSpacing>
               <IconButton onClick={(e) => e.stopPropagation()}>
                 <FavoriteIcon />
               </IconButton>
-              {/* <IconButton onClick={(e) => e.stopPropagation()}>
+              <IconButton onClick={(e) => e.stopPropagation()}>
                 <ShareIcon />
-              </IconButton> */}
-            </CardActions>
+              </IconButton>
+            </CardActions> */}
+
+            <Button variant='contained' color='success' 
+            onClick={()=>navigate(`/Bookingform/${pdata._id}`)}>
+              BOOK NOW
+              </Button>
 
           </Card>
         ))}

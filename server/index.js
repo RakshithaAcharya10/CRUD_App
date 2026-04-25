@@ -5,6 +5,7 @@ const userroutes = require("./Routes/user_Routes")
 const adminroutes = require("./Routes/admin_Routes")
 const productroutes = require("./Routes/product_Routes")
 const categoryroutes = require("./Routes/category_routes")
+const bookingroutes =require("./Routes/booking_Routes")
 // Express is the web framework, which handles request and response
 
 const app = express();
@@ -39,4 +40,5 @@ app.use('/admin', adminroutes)
 app.use('/product', productroutes)
 // app.use('/category', require("./Routes/category_routes"))
 app.use('/category', categoryroutes)
+app.use('/booking', bookingroutes)
 app.use('/image',express.static("./Uploads"))

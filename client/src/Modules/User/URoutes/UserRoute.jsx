@@ -10,6 +10,8 @@ import ProductDetails from '../UComponents/ProductDetails'
 import Login from '../UComponents/Login'
 import Myprofile from '../UComponents/Myprofile'
 import FAQ from '../UComponents/FAQ'
+import Bookingform from '../UComponents/Bookingform'
+import Trackstatus from '../UComponents/Trackstatus'
 
 
 function AppContent() {
@@ -28,6 +30,8 @@ function AppContent() {
         <Route path='/Product/:id' element={<ProductDetails />} />
         <Route path='/Myprofile' element={<Myprofile />} />
         <Route path='/FAQ' element={<FAQ />} />
+        <Route path='/Trackstatus' element={<Trackstatus />} />
+        <Route path='/Bookingform/:productID' element={<Bookingform />} />
       </Routes>
 
     </div>

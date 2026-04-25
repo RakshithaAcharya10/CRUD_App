@@ -51,7 +51,7 @@ export default function Myprofile() {
 
             // axios.get("http://localhost:7000/user/getProfile",{headers:{"auth-token":token}})
             const details = await response.json()
-            console.log(details.udata)
+            console.log("Details",details.udata)
             setFormdata(details.udata)
         } catch (error) {
             console.log(error)

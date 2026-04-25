@@ -12,6 +12,7 @@ import ViewCategory from '../AComponents/ViewCategory'
 import UpdateCategory from '../AComponents/UpdateCategory'
 import UpdateProduct from '../AComponents/UpdateProduct'
 import ALogin from '../AComponents/ALogin'
+import ViewBooking from '../AComponents/ViewBooking'
 export default function AdminRoute() {
   return (
     <div>
@@ -26,6 +27,7 @@ export default function AdminRoute() {
         <Route path='/ViewUser' element={<ViewUser/>}/>
         <Route path='/ViewProduct' element={<ViewProduct/>}/>
         <Route path='/ViewCategory' element={<ViewCategory/>}/>
+        <Route path='/ViewBooking' element={<ViewBooking/>}/>
         <Route path='/UpdateCategory/:rowid' element={<UpdateCategory/>}/>
         <Route path='/UpdateProduct/:rowid' element={<UpdateProduct/>}/>
       </Routes>
