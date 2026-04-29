@@ -6,4 +6,4 @@ route.post("/Createbooking",auth, Createbooking)
 route.get("/getAllbooking", getAllbooking)
 route.put("/updateStatus/:id", updateStatus)
 route.get("/getuserbookings",auth, getuserbookings)
-module.exports =route
+module.exports =route 
