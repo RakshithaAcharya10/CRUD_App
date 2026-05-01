@@ -63,7 +63,7 @@ export default function ViewUser() {
               <TableCell align="left">{row.phone}</TableCell>
               <TableCell align="left">{row.address}</TableCell>
               <TableCell align="left">
-                <Button variant='contained'>UPDATE</Button>
+                {/* <Button variant='contained'>UPDATE</Button> */}
                 <Button variant='outlined' onClick={()=>HandleDelete(row._id)}>DELETE</Button>
               </TableCell>
             </TableRow>
